@@ -1,30 +1,34 @@
 #pragma once
-
-#include "cnodo.h"
+#include "cnodo.h" // Incluye la definición del nodo autorreferenciado
 #include <iostream>
 
-// Cola enlazada de enteros. Funciona con la regla FIFO:
-// el primero que entra es el primero que sale.
-class ccola
-{
+class ccola {
 private:
-	cnodo* aPrimero; // Frente de la cola.
-	cnodo* aUltimo;  // Final de la cola.
-	int aM;          // Cantidad de nodos.
-	bool aI;         // Estado de la última operación.
+	cnodo* aInicio; // Puntero al inicio de la estructura en memoria dinámic
+	cnodo* aP;      // Puntero al primero (Frente de la cola)
+	cnodo* aU;      // Puntero al último (Final de la cola)
+	int aN;         // Cantidad de nodos guardados
+	bool aI;        // Bandera de estado de la operación (true/false)
 
 public:
-	ccola();
-	~ccola();
+	ccola();  // Constructor por defecto
+	~ccola(); // Destructor para liberar memoria
 
-	int getaN() const;
-	bool getaI() const;
-	cnodo* getainicio() const;
+	// Métodos Getters y Setters
+	int getaN();
+	void setaN(int paN);
+	bool getaI();
+	void setaI(bool paI);
+	cnodo* getaInicio();
+	void setaInicio(cnodo* paInicio);
+	cnodo* getaP();
+	void setaP(cnodo* paP);
+	cnodo* getaU();
+	void setaU(cnodo* paU);
 
-	// Las cinco primitivas de la cola.
-	void mCrear(int pdato);
-	void mInsertar(int pdato);
-	void mEliminar();
-	void mVer() const;
-	void mDestruir();
+	// Métodos principales de la Cola (FIFO) según el tablero del docente
+	void mCrear(int pdato);    // Crea el primer nodo de la cola
+	void mInsertar(int pdato); // Encola un nuevo nodo por el final (aU)
+	int mEliminar();           // Desencola un nodo por el frente (aP)
+	void mDestruir();          // Destruye toda la cola
 };
